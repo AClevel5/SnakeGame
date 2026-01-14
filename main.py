@@ -5,22 +5,22 @@ screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("Snake Game")
-x = 0
-y = 0
+screen.tracer(0)
+starting_positions = [(0,0),(-20,0),(-40,0)]
 
-def grow_snake(x_cord, y_cord):
-    t = turtle.Turtle()
-    t.color("white")
-    t.shape("square")
-    t.goto(x_cord, y_cord)
+segments = []
 
-for a in range(3):
-    grow_snake(x, y)
-    x -= 20
+for position in starting_positions:
+    new_segment = Turtle("square")
+    new_segment.color("white")
+    new_segment.penup()
+    new_segment.goto(position)
+    segments.append(new_segment)
 
-
-
-
+game_is_on = True
+while game_is_on:
+    for segment in segments:
+        segment.forward(20)
 
 
 
