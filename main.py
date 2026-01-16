@@ -9,6 +9,8 @@ screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("Snake Game")
 screen.tracer(0)
+screen.getcanvas().winfo_toplevel().attributes("-topmost", True)
+screen.getcanvas().winfo_toplevel().attributes("-topmost", False)
 
 snake = Snake()
 food = Food()
@@ -36,5 +38,13 @@ while game_is_on:
     if snake.head.xcor() < -280 or snake.head.xcor() > 280 or snake.head.ycor() < -280 or snake.head.ycor() > 280:
         game_is_on = False
         scoreboard.game_over()
+
+    #Detect collision with tail.
+    #If head collides with any segment in the tail trigger game over.
+    for segment in snake.segments:
+        if segment == snake.head:
+            pass
+        elif snake.head.distance(segment) < 10:
+            game_is_on = False
 
 screen.exitonclick()
